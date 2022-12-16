@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'work.dart';
+import 'travel.dart';
+import 'tech.dart';
 import 'education.dart';
+import 'work.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -74,7 +76,12 @@ class _HomePageState extends State<HomePage> {
               ),
               IconButton(
                 enableFeedback: false,
-                onPressed: () {},
+                onPressed: () {
+                  {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => travel()));
+                  }
+                },
                 icon: const Icon(
                   Icons.travel_explore_sharp,
                   color: Colors.white,
@@ -89,11 +96,34 @@ class _HomePageState extends State<HomePage> {
             // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
             children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
+              UserAccountsDrawerHeader(
+                accountName: Text(
+                  "Sample",
+                  style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
-                child: Text('Hello Flutter-er!'),
+                accountEmail: Text(
+                  "sample@sample.co",
+                  style: TextStyle(color: Colors.black, fontSize: 20),
+                ),
+                currentAccountPicture: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                      "https://media.geeksforgeeks.org/wp-content/uploads/20210101144014/gfglogo.png"),
+                ),
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                  colors: [Colors.purple, Colors.blueAccent, Colors.yellow],
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
+                  stops: [0.1, 0.4, 0.7],
+                  tileMode: TileMode.mirror,
+                )
+                    //image: DecorationImage(
+                    //image: NetworkImage(
+                    //"https://media.geeksforgeeks.org/wp-content/uploads/20210101144014/gfglogo.png",
+                    //),
+                    //fit: BoxFit.fill,
+                    //),
+                    ),
               ),
               ListTile(
                 leading: Icon(
@@ -166,7 +196,10 @@ class _HomePageState extends State<HomePage> {
                           ),
                           child: FlatButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (_) => tech()));
+                              }
                             },
                             child: Text(
                               'Tech Stack',
